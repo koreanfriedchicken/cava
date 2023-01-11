@@ -1,6 +1,9 @@
 const Navbar = () => {
   return (
     <div className='navbar'>
+      <div className='navbar__hamburger'>
+        <img src='hamburgermenu.svg' />
+      </div>
       <div className='navbar__logo'>
         <img src='cavalogo.svg' />
       </div>
