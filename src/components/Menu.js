@@ -40,6 +40,38 @@ const Menu = () => {
               balsamic date vinaigrette, more.</p>
           </div>
       </div>
+
+      <h1>BOWLS</h1>
+      <div className='menu__grid'>
+          <div className='menu__item'>
+            <img src='balsamicbowl.avif'/>
+            <h2>BALSAMIC DATE CHICKEN</h2>
+            <h3>645 Cal</h3>
+            <p>Grilled chicken, eggplant dip, red pepper hummus, corn, brown rice, spinach,
+              balsamic date vinaigrette, more.</p>
+          </div>
+          <div className='menu__item'>
+            <img src='balsamicbowl.avif'/>
+            <h2>BALSAMIC DATE CHICKEN</h2>
+            <h3>645 Cal</h3>
+            <p>Grilled chicken, eggplant dip, red pepper hummus, corn, brown rice, spinach,
+              balsamic date vinaigrette, more.</p>
+          </div>
+          <div className='menu__item'>
+            <img src='balsamicbowl.avif'/>
+            <h2>BALSAMIC DATE CHICKEN</h2>
+            <h3>645 Cal</h3>
+            <p>Grilled chicken, eggplant dip, red pepper hummus, corn, brown rice, spinach,
+              balsamic date vinaigrette, more.</p>
+          </div>
+          <div className='menu__item'>
+            <img src='balsamicbowl.avif'/>
+            <h2>BALSAMIC DATE CHICKEN</h2>
+            <h3>645 Cal</h3>
+            <p>Grilled chicken, eggplant dip, red pepper hummus, corn, brown rice, spinach,
+              balsamic date vinaigrette, more.</p>
+          </div>
+      </div>
     </div>
   )
 }
