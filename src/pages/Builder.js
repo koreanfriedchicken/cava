@@ -293,17 +293,22 @@ const Builder = () => {
 
       
       <div className='builder__order'>
-        <div className='builder__order__title'>GREEN + GRAINS BOWL</div>
-        <div className='builder__order__info'>
-          <div className='builder__order__price'>${price.toFixed(2)}</div>
-          <div className='builder__order__calories'>{cal} Cal</div>
+        <div>
+          <div className='builder__order__back'>Back to Menu</div>
+          <div className='builder__order__title'>GREEN + GRAINS BOWL</div>
+          <div className='builder__order__info'>
+            <div className='builder__order__price'>${price.toFixed(2)}</div>
+            <div className='builder__order__spacer'>•</div>
+            <div className='builder__order__calories'>{cal} Cal</div>
+          </div>
         </div>
+
         <div className='builder__order__list'>
         {order.length > 0 && order.map((i, n) => {
             return <div className='builder__order__list__item' key={n}>
                 <img src={i.img}></img>
                 <p>{i.name}</p>
-                <p onClick={() => handleRemove(i, n)}>X</p>
+                <p className='builder__order__remove' onClick={() => handleRemove(i, n)}>X</p>
               </div>
           })}
         </div>
