@@ -10,6 +10,12 @@
   background-color: black;
 }
 
+/* CSS SECTIONS */
+/* MOBILE & DESKTOP NAVBAR */
+/* MOBILE & DESKTOP HERO */
+/* MOBILE & DESKTOP MENU */
+/* MOBILE & DESKTOP BUILDER */
+
 /* MOBILE NAVBAR  */
 
 
@@ -429,6 +435,113 @@
     left: 50%;
     transform: translate(-50%, 0%);
   }
+}
+
+/* BUILDER MOBILE */
+@media screen and (min-width: 1000px) {
+  .builder{
+    width: 100%;
+    display: flex;
+  }
+
+  .builder__options{
+    background-color: #fff8e8;
+    width: 55%;
+    padding: 0 4vw 50px 4vw;
+  }
+
+  .builder__label{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid black;
+  }
+
+  .builder__grid{
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 1vw;
+  }
+
+  .builder__errormodal{
+    position: fixed;
+    top:0;
+    width: 100vw;
+    height: 100vh;
+    background-color: hsla(25, 0%, 0%, 0.5);
+
+    z-index: 99;
+    scroll-behavior: none;
+    display: grid;
+    place-content: center;
+  }
+
+  .builder__errormodalcontent{
+    width: 350px;
+    height: 300px;
+    background-color: white;
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+    padding-top: 50px;
+  }
+
+  .builder__okay{
+    width: 100px;
+    height: 40px;
+    background-color: #f3d03e;
+    border: 1px solid black;
+    border-radius: 500px;
+    display: grid;
+    place-content: center;
+  }
+
+
+  .builder__item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .builder__item > img{
+    min-width: 100px;
+    width: 8vw;
+    max-width: 200px;
+  }
+
+  .builder__order{
+    background-color: #f4e9d4;
+    width: 45%;
+    padding: 5vw;
+    position: relative;
+  }
+
+  .builder__addtobag{
+    width: 100%;
+    position: absolute;
+    bottom: 100px;
+    background-color: #f3d03e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border-radius: 500px;
+    border: 1px solid black;
+    margin: 0 auto;
+  }
+
+  .builder__order__list__item{
+    display: flex;
+    align-items: center;
+  }
+
+  .builder__order__list__item > img{
+    width: 40px;
+  }
+
+
 }
 
 
