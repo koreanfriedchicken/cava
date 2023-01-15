@@ -1,6 +1,10 @@
 import { useState } from "react"
+import { BagState } from "../context/BagContext"
+import { Link } from "react-router-dom"
 
 const Builder = () => {
+
+  const { state, dispatch } = BagState()
 
   const [price, setPrice] = useState(10.95)
   const [cal, setCal] = useState(0)
@@ -123,6 +127,7 @@ const Builder = () => {
         setOrder([...order, {...item}])
         setCal(cal + item.cal)
         setPrice(price + item.price)
+        return
       }
 
       if(item.type === 'grains' && uniqueItems.grains === 0){
@@ -130,6 +135,7 @@ const Builder = () => {
         setOrder([...order, {...item}])
         setCal(cal + item.cal)
         setPrice(price + item.price)
+        return
       }
 
       if(item.type === 'dips' && uniqueItems.dips < 3){
@@ -138,7 +144,10 @@ const Builder = () => {
         setOrder([...order, {...item}])
         setCal(cal + item.cal)
         setPrice(price + item.price)
+        return
       }
+
+      setErrorModal(true)
   }
 
   const handleRemove = (item, index) => {
@@ -162,12 +171,26 @@ const Builder = () => {
     setPrice(price - item.price)
   }
 
+  const handleBag = () => {
+    const bowl = {
+      ingredients: [...order],
+      quantity: 1,
+      price: price
+    }
+
+    dispatch({
+      type: 'ADD',
+      payload: bowl
+    })
+
+  }
+
   return (
     <>
     {errorModal && 
     <div className='builder__errormodal'>
       <div className='builder__errormodalcontent'>
-        <div>This is limited to one</div>
+        <div>Limit Exceeded</div>
         <div className='builder__okay' onClick={() => setErrorModal(false)}>Okay</div>
       </div>
     </div>}
@@ -241,6 +264,7 @@ const Builder = () => {
               <img src={sampledata.rightrice.img}></img>
               <div>{sampledata.rightrice.name}</div>
               <div>{sampledata.rightrice.cal} Cal</div>
+              <div>+ ${sampledata.rightrice.price} </div>
             </div>         
           </div>
         </div>
@@ -293,7 +317,7 @@ const Builder = () => {
 
       
       <div className='builder__order'>
-        <div>
+        <div className='builder__order__top'>
           <div className='builder__order__back'>Back to Menu</div>
           <div className='builder__order__title'>GREEN + GRAINS BOWL</div>
           <div className='builder__order__info'>
@@ -312,7 +336,11 @@ const Builder = () => {
               </div>
           })}
         </div>
-        <div className='builder__addtobag'>Add to bag</div>
+        <div className='builder__order__bottom'>
+          <Link onClick={handleBag} className='builder__addtobag' to='/'>
+            <div >Add to bag</div>
+          </Link>
+        </div>
       </div>
     </div>
     </>
