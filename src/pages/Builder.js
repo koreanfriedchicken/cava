@@ -173,6 +173,7 @@ const Builder = () => {
 
   const handleBag = () => {
     const bowl = {
+      uuid: crypto.randomUUID(),
       ingredients: [...order],
       quantity: 1,
       price: price

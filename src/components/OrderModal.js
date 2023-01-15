@@ -1,15 +1,23 @@
+import { useEffect, useState } from "react"
 import { BagState } from "../context/BagContext"
 
 const OrderModal = ({ setOrderModal }) => {
 
   const { state, dispatch } = BagState()
-  const newbag = state.bag
+  const [ totalPrice, setTotalPrice] = useState(0)
 
-  newbag.map((i, n) => {
-    i.ingredients.map((j) => {
-      console.log(j)
+  const handleRemove = (index) => {
+    dispatch({
+      type: 'REMOVE',
+      payload: index
     })
-  })
+  }
+
+  useEffect(() => {
+    setTotalPrice(
+      state.bag.reduce((total, item) => total + item.price, 0)
+    ) 
+  }, [state.bag])
 
   return (
     <div className='ordermodal'>
@@ -18,11 +26,11 @@ const OrderModal = ({ setOrderModal }) => {
       </div>
       <div className='ordermodal__modal'>
         <div className='ordermodal__location'>
-          Pickup from New York
+          Pickup from Antarctica
         </div>
         <div className='ordermodal__list'>
           {
-              newbag.map((i, n) => {
+              state.bag.map((i, n) => {
                 return <div className='ordermodal__list__item'>
                   <div className='ordermodal__list__itemheader'>
                     <div className='ordermodal__list__itemleft'>
@@ -41,14 +49,22 @@ const OrderModal = ({ setOrderModal }) => {
                   </div>
                   <div className='ordermodal__list__options'>
                     <div>Modify</div>
-                    <div>Remove</div>
+                    <div onClick={() => handleRemove(i.uuid)}>Remove</div>
                   </div>
                 </div>
               })
           }
         </div>
-        <div className='ordermodal__total'></div>
-        <div className='ordermodal__buttons'></div>
+        <div className='ordermodal__footer'>
+          <div className='ordermodal__total'>
+            <div>Bag Total</div>
+            <div>${totalPrice.toFixed(2)}</div>
+          </div>
+          <div className='ordermodal__buttons'>
+            <div className='ordermodal__addmore'>Add More Items</div>
+            <div className='ordermodal__checkout'>Checkout</div>
+          </div>
+        </div>
       </div>
     </div>
   )

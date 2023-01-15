@@ -8,6 +8,7 @@ const BagContext = ({ children }) => {
   const [state, dispatch] = useReducer(bagReducer, {
     bag:[ ],
   })
+
   return <Bag.Provider value={{state, dispatch}}>
     {children}
   </Bag.Provider>

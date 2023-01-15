@@ -393,12 +393,13 @@
 }
 
 .menu__item{
-  width: 400px;
+  width: 350px;
   padding: 20px 0 20px 0;
 }
 
 .menu__item > img{
   background-color: #f7f1e3;
+  width: 100%;
 }
 
 .menu__item > h2{
@@ -655,14 +656,18 @@
   z-index: 1;
   position: absolute;
   right: 0;
-  width: 400px;
+  width: 450px;
   height: 100vh;
   background-color: white;
   box-shadow: -5px 0px 17px -6px rgba(0,0,0,0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
 }
 
 .ordermodal__location{
-  height: 70px;
+  min-height: 70px;
   width: 100%;
   background-color: #fff8e8;
   display: grid;
@@ -719,5 +724,44 @@
   margin-right: 10px;
   cursor: pointer;
 }
+
+.ordermodal__total{
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  font-weight: bold;
+  border-top: 2px solid #d9c6a4;
+  margin-top: 30px;
+}
+
+.ordermodal__buttons{
+  display: flex;
+  justify-content: space-between;
+  
+  margin: 20px;
+}
+
+.ordermodal__addmore{
+  width: 45%;
+  height: 50px;
+  font-weight: bold;
+  border: 1px solid black;
+  border-radius: 500px;
+  display: grid;
+  place-items: center;
+}
+
+.ordermodal__checkout{
+  width: 45%;
+  height: 50px;
+  font-weight: bold;
+  border: 1px solid black;
+  border-radius: 500px;
+  display: grid;
+  place-items: center;
+  background-color: #f3d03e;
+}
+
+
 
 

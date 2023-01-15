@@ -1,22 +1,31 @@
 import './App.css';
+
+import { useState, useEffect } from 'react';
+import {Routes, Route, useLocation} from 'react-router-dom'
+
 import Footer from './components/Footer';
-import Hero from './components/Hero';
-import Menu from './components/Menu';
 import Navbar from './components/Navbar';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import OrderModal from './components/OrderModal';
+
 import Builder from './pages/Builder';
 import MenuPage from './pages/MenuPage';
 import BagContext from './context/BagContext';
-import OrderModal from './components/OrderModal';
-import { useState } from 'react';
 
 function App() {
   const [orderModal, setOrderModal] = useState(true)
 
+  //scroll to top of page on route change
+  const routePath = useLocation();
+  const onTop = () => {
+    window.scrollTo(0, 0);
+  }
+  useEffect(() => {
+    onTop()
+  }, [routePath]);
+
   return (
     <div className="App">
       <BagContext>
-      <BrowserRouter>
         <Navbar setOrderModal={setOrderModal}/>
         {orderModal && <OrderModal setOrderModal={setOrderModal} />}
         <Routes>
@@ -25,7 +34,6 @@ function App() {
           <Route path='*' element={<MenuPage />} />
         </Routes>
         <Footer />
-      </BrowserRouter>
       </BagContext>
     </div>
   );
