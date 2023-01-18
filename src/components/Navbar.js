@@ -5,7 +5,6 @@ import { Link } from "react-router-dom"
 const Navbar = ({ setOrderModal }) => {
 
   const { state } = BagState()
-  console.log(state)
   return (
     <div className='navbar'>
       <div className='navbar__content'>
@@ -34,11 +33,14 @@ const Navbar = ({ setOrderModal }) => {
           <img src='user.svg'></img>
           <div>Sign In</div>
         </div>
-        <div className='navbar__bag' onClick={() => setOrderModal(true)}>
+        {<div className='navbar__bag' onClick={() => setOrderModal(true)}>
           <img src='bag.svg'></img>
           <div>{state.bag.length}</div>
         </div>
-        <div className='navbar__order'>Order</div>
+        }
+        {
+          state.bag.length == 0 && <div className='navbar__order'>Order</div>
+        }
       </div>
       </div>
     </div>

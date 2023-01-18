@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const Menu = () => {
   return (
     <div className='menu'>
@@ -11,20 +13,25 @@ const Menu = () => {
       </div>
       <h1>BOWLS</h1>
       <div className='menu__grid'>
-          <div className='menu__item'>
-            <img src='balsamicbowl.avif'/>
-            <h2>BALSAMIC DATE CHICKEN</h2>
-            <h3>$10.95 ● 645 Cal</h3>
-            <p>Grilled chicken, eggplant dip, red pepper hummus, corn, brown rice, spinach,
-              balsamic date vinaigrette, more.</p>
-          </div>
-          <div className='menu__item'>
-            <img src='harissabowl.avif'/>
-            <h2>HARISSA AVOCADO BOWL</h2>
-            <h3>$14.60 ● 880 Cal</h3>
-            <p>Harissa honey chicken + hot harissa vinaigrette. Crazy Feta, hummus, corn, 
-              avocado, rice, SuperGreens, more.</p>
-          </div>
+          <Link className='link' to='/balsamicdatechicken'>
+            <div className='menu__item'>
+              <img src='balsamicbowl.avif'/>
+              <h2>BALSAMIC DATE CHICKEN</h2>
+              <h3>$10.95 ● 645 Cal</h3>
+              <p>Grilled chicken, eggplant dip, red pepper hummus, corn, brown rice, spinach,
+                balsamic date vinaigrette, more.</p>
+            </div>
+          </Link>
+          <Link className='link' to='/harissaavocadobowl'>
+            <div className='menu__item'>
+              <img src='harissabowl.avif'/>
+              <h2>HARISSA AVOCADO BOWL</h2>
+              <h3>$14.60 ● 880 Cal</h3>
+              <p>Harissa honey chicken + hot harissa vinaigrette. Crazy Feta, hummus, corn, 
+                avocado, rice, SuperGreens, more.</p>
+            </div>
+          </Link>
+          <Link className='link' to='/lentilavocadobowl'>
           <div className='menu__item'>
             <img src='lentilbowl.avif'/>
             <h2>LENTIL AVOCADO BOWL</h2>
@@ -32,13 +39,17 @@ const Menu = () => {
             <p>Falafel, roasted veg, roasted eggplant, hummus, avocado, lentil tabbouleh, 
               spinach, SuperGreens, skhug, more.</p>
           </div>
-          <div className='menu__item'>
-            <img src='rightbowl.avif'/>
-            <h2>CHICKEN + RIGHTRICE</h2>
-            <h3>$11.60 ● 750 Cal</h3>
-            <p>Built on a base of high-protein RightRice with grilled chicken, tzatziki, 
-              hummus, feta, tomato, arugula, more.</p>
-          </div>
+          </Link>
+          <Link className='link' to='/chickenrightricebowl'>
+            <div className='menu__item'>
+              <img src='rightbowl.avif'/>
+              <h2>CHICKEN + RIGHTRICE</h2>
+              <h3>$11.60 ● 750 Cal</h3>
+              <p>Built on a base of high-protein RightRice with grilled chicken, tzatziki, 
+                hummus, feta, tomato, arugula, more.</p>
+            </div>
+          </Link>
+          <Link className='link' to='/greeksalad'>
           <div className='menu__item'>
             <img src='greeksalad.avif'/>
             <h2>GREEK SALAD</h2>
@@ -46,6 +57,7 @@ const Menu = () => {
             <p>Grilled chicken, hummus, tzatziki, feta, cucumber, tomato, Kalamata olives, 
               romaine, arugula, and vinaigrette.</p>
           </div>
+          </Link>
       </div>
 
       <h1>PITAS</h1>

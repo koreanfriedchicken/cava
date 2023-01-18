@@ -11,6 +11,11 @@ import Builder from './pages/Builder';
 import MenuPage from './pages/MenuPage';
 import BagContext from './context/BagContext';
 import Checkout from './pages/Checkout';
+import BalsamicDateChicken from './pages/BalsamicDateChicken';
+import HarissaAvocadoBowl from './pages/HarissaAvocadoBowl';
+import LentilAvocadoBowl from './pages/LentilAvocadoBowl';
+import ChickenRightRice from './pages/ChickenRightRice';
+import GreekSalad from './pages/GreekSalad';
 
 function App() {
   const [orderModal, setOrderModal] = useState(false)
@@ -33,6 +38,12 @@ function App() {
           <Route path='/' element={<MenuPage />}/>
           <Route path='/builder' element={<Builder />} />
           <Route path='/checkout' element={<Checkout setOrderModal={setOrderModal} />} />
+          <Route path='/balsamicdatechicken' element={<BalsamicDateChicken />}/>
+          <Route path='/harissaavocadobowl' element={<HarissaAvocadoBowl />}/>
+          <Route path='/lentilavocadobowl' element={<LentilAvocadoBowl />}/>
+          <Route path='/chickenrightricebowl' element={<ChickenRightRice />}/>
+          <Route path='/greeksalad' element={<GreekSalad />}/>
+
           <Route path='*' element={<MenuPage />} />
         </Routes>
         <Footer />
