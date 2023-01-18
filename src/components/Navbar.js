@@ -1,5 +1,7 @@
 import { BagState } from "../context/BagContext"
 
+import { Link } from "react-router-dom"
+
 const Navbar = ({ setOrderModal }) => {
 
   const { state } = BagState()
@@ -11,11 +13,16 @@ const Navbar = ({ setOrderModal }) => {
           <div className='navbar__hamburger'>
             <img src='hamburgermenu.svg' />
           </div>
-          <div className='navbar__logo'>
+          
+          <Link to='/'>
+            <div className='navbar__logo'>
             <img src='cavalogo.svg' />
-          </div>
+            </div>
+          </Link>
           <div className='navbar__links'>
-            <div>Menu</div>
+            <Link className='link' to='/'>
+              <div>Menu</div>
+            </Link>
             <div>Gifting</div>
             <div>Rewards</div>
             <div>Catering</div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { BagState } from "../context/BagContext"
 
 const OrderModal = ({ setOrderModal }) => {
@@ -6,18 +7,28 @@ const OrderModal = ({ setOrderModal }) => {
   const { state, dispatch } = BagState()
   const [ totalPrice, setTotalPrice] = useState(0)
 
-  const handleRemove = (index) => {
+  const handleRemove = (itemid) => {
     dispatch({
       type: 'REMOVE',
-      payload: index
+      payload: itemid
+    })
+  }
+
+  const handleModify = (itemid) => {
+    setOrderModal(false)
+    dispatch({
+      type: 'MODDING',
+      payload: itemid
     })
   }
 
   useEffect(() => {
     setTotalPrice(
-      state.bag.reduce((total, item) => total + item.price, 0)
+      state.bag.reduce((total, item) => total + (item.price * item.quantity), 0)
     ) 
   }, [state.bag])
+
+
 
   return (
     <div className='ordermodal'>
@@ -37,9 +48,28 @@ const OrderModal = ({ setOrderModal }) => {
                       <div className='ordermodal__list__itemname'>GREENS + GRAINS BOWL</div>
                     </div>
                     <div className='ordermodal__list__itemright'>
-                      <div className='ordermodal__list__itemarrow'>A</div>
-                      <div className='ordermodal__list__itemquantity'>{i.quantity}</div>
-                      <div className='ordermodal__list__itemprice'>{i.price.toFixed(2)}</div>
+                      <div className='ordermodal__list__itemquantity'>
+                          <select value={i.quantity} onChange={(e) => {
+                            dispatch({
+                              type: 'CHANGE',
+                              payload: {
+                                id: i.uuid,
+                                quantity: e.target.value
+                              }
+                            })
+                          }}>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='5'>5</option>
+                            <option value='6'>6</option>
+                            <option value='7'>7</option>
+                            <option value='8'>8</option>
+                            <option value='9'>9</option>
+                          </select>
+                      </div>
+                      <div className='ordermodal__list__itemprice'>{(i.quantity * i.price).toFixed(2)}</div>
                     </div>
                   </div>
                   <div className='ordermodal__list__ingredients'>
@@ -48,7 +78,9 @@ const OrderModal = ({ setOrderModal }) => {
                     })}
                   </div>
                   <div className='ordermodal__list__options'>
-                    <div>Modify</div>
+                    <Link to='/builder'>
+                      <div onClick={() => handleModify(i.uuid)}>Modify</div>
+                    </Link>
                     <div onClick={() => handleRemove(i.uuid)}>Remove</div>
                   </div>
                 </div>
@@ -61,8 +93,10 @@ const OrderModal = ({ setOrderModal }) => {
             <div>${totalPrice.toFixed(2)}</div>
           </div>
           <div className='ordermodal__buttons'>
-            <div className='ordermodal__addmore'>Add More Items</div>
-            <div className='ordermodal__checkout'>Checkout</div>
+            <div className='ordermodal__addmore' onClick={() => setOrderModal(false)}>Add More Items</div>
+            <Link className='ordermodal__checkout link' to='/checkout'>
+              <div>Checkout</div>
+            </Link>
           </div>
         </div>
       </div>

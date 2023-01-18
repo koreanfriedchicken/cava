@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BagState } from "../context/BagContext"
 import { Link } from "react-router-dom"
 
@@ -11,6 +11,12 @@ const Builder = () => {
   const [order, setOrder] = useState([])
   const [uniqueItems, setUniqueItems] = useState({greens: 0, grains: 0, dips: 0})
   const [errorModal, setErrorModal] = useState(false)
+  const [modding, setModding] = useState()
+
+  //holding async value
+  let green = 0
+  let grain = 0
+  let dips = 0
 
   //sample data
   const sampledata={
@@ -121,33 +127,55 @@ const Builder = () => {
     },
   }
 
+  useEffect(() => {
+    state.bag.forEach((i) => {
+      if(i.modding == true){
+        setModding(i)
+        i.ingredients.forEach((ing) => {
+          handleAdd(ing)
+        })
+      }
+    })
+  }, [state.bag])
+
+  useEffect(() => {
+    return () => {
+      dispatch({
+        type: 'DONEMOD'
+      })
+    }
+  }, [])
+
+
   const handleAdd = (item) => {
-      if(item.type === 'greens' && uniqueItems.greens === 0){
-        setUniqueItems({ ...uniqueItems, greens: 1})
-        setOrder([...order, {...item}])
-        setCal(cal + item.cal)
-        setPrice(price + item.price)
+    console.log(uniqueItems)
+      if(item.type === 'greens' && uniqueItems.greens === 0 && green === 0){
+        setUniqueItems((prevItems) => ({ ...prevItems, greens: 1}))
+        setOrder(prevOrder => [...prevOrder, {...item}])
+        setCal(prevCal => prevCal + item.cal)
+        setPrice(prevPrice => prevPrice + item.price)
+        green++
         return
       }
 
-      if(item.type === 'grains' && uniqueItems.grains === 0){
-        setUniqueItems({ ...uniqueItems, grains: 1})
-        setOrder([...order, {...item}])
-        setCal(cal + item.cal)
-        setPrice(price + item.price)
+      if(item.type === 'grains' && uniqueItems.grains === 0 && grain === 0){
+        setUniqueItems((prevItems) => ({ ...prevItems, grains: 1}))
+        setOrder(prevOrder => [...prevOrder, {...item}])
+        setCal(prevCal => prevCal + item.cal)
+        setPrice(prevPrice => prevPrice + item.price)
+        grain++
         return
       }
 
-      if(item.type === 'dips' && uniqueItems.dips < 3){
+      if(item.type === 'dips' && uniqueItems.dips < 3 && dips < 3){
         const newDips = uniqueItems.dips += 1
-        setUniqueItems({ ...uniqueItems, dips: newDips})
-        setOrder([...order, {...item}])
-        setCal(cal + item.cal)
-        setPrice(price + item.price)
+        setUniqueItems((prevItems) => ({ ...prevItems, dips: newDips }))
+        setOrder(prevOrder => [...prevOrder, {...item}])
+        setCal(prevCal => prevCal + item.cal)
+        setPrice(prevPrice => prevPrice + item.price)
+        dips++
         return
       }
-
-      setErrorModal(true)
   }
 
   const handleRemove = (item, index) => {
@@ -162,7 +190,6 @@ const Builder = () => {
       setUniqueItems({ ...uniqueItems, dips: newDips})
     }
 
-
     //splice to remove item
     const newOrder = order
     newOrder.splice(index, 1)
@@ -171,19 +198,28 @@ const Builder = () => {
     setPrice(price - item.price)
   }
 
+  //add order to bag
   const handleBag = () => {
+    if(modding) {
+      dispatch({
+        type: 'REMOVE',
+        payload: modding.uuid
+      })
+    }
+
     const bowl = {
       uuid: crypto.randomUUID(),
       ingredients: [...order],
       quantity: 1,
-      price: price
+      price: price,
+      modding: false,
+      name: 'Greens + Grains Bowl'
     }
 
     dispatch({
       type: 'ADD',
       payload: bowl
     })
-
   }
 
   return (

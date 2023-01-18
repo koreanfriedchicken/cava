@@ -10,9 +10,10 @@ import OrderModal from './components/OrderModal';
 import Builder from './pages/Builder';
 import MenuPage from './pages/MenuPage';
 import BagContext from './context/BagContext';
+import Checkout from './pages/Checkout';
 
 function App() {
-  const [orderModal, setOrderModal] = useState(true)
+  const [orderModal, setOrderModal] = useState(false)
 
   //scroll to top of page on route change
   const routePath = useLocation();
@@ -31,6 +32,7 @@ function App() {
         <Routes>
           <Route path='/' element={<MenuPage />}/>
           <Route path='/builder' element={<Builder />} />
+          <Route path='/checkout' element={<Checkout />} />
           <Route path='*' element={<MenuPage />} />
         </Routes>
         <Footer />
