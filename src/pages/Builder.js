@@ -176,6 +176,7 @@ const Builder = () => {
         dips++
         return
       }
+
   }
 
   const handleRemove = (item, index) => {

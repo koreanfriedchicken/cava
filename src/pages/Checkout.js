@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { BagState } from "../context/BagContext"
 
-const Checkout = () => {
+const Checkout = ({ setOrderModal }) => {
 
   const { state, dispatch } = BagState()
 
@@ -12,6 +12,7 @@ const Checkout = () => {
     setSubtotal(
       state.bag.reduce((total, item) => total + (item.price * item.quantity), 0)
     ) 
+    setOrderModal(false)
   }, [state.bag])
 
   return (

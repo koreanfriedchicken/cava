@@ -32,7 +32,7 @@ function App() {
         <Routes>
           <Route path='/' element={<MenuPage />}/>
           <Route path='/builder' element={<Builder />} />
-          <Route path='/checkout' element={<Checkout />} />
+          <Route path='/checkout' element={<Checkout setOrderModal={setOrderModal} />} />
           <Route path='*' element={<MenuPage />} />
         </Routes>
         <Footer />
