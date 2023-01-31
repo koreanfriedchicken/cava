@@ -3,7 +3,7 @@ import { BagState } from "../context/BagContext"
 
 const Checkout = ({ setOrderModal }) => {
 
-  const { state, dispatch } = BagState()
+  const { state } = BagState()
 
   const [subtotal, setSubtotal] = useState(0)
 
@@ -13,7 +13,7 @@ const Checkout = ({ setOrderModal }) => {
       state.bag.reduce((total, item) => total + (item.price * item.quantity), 0)
     ) 
     setOrderModal(false)
-  }, [state.bag])
+  }, [state.bag, setOrderModal])
 
   return (
     <div className='checkout'>

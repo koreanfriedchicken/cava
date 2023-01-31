@@ -3,7 +3,7 @@ export const bagReducer = (state, action) => {
     case 'ADD':
       return {bag: [...state.bag, action.payload]}
     case 'REMOVE':
-      return {bag: state.bag.filter(i => i.uuid != action.payload)}
+      return {bag: state.bag.filter(i => i.uuid !== action.payload)}
     case 'CHANGE':
       return {bag: state.bag.filter((i) => i.uuid === action.payload.id ? i.quantity = action.payload.quantity : i.quantity)}
     case 'MODDING':

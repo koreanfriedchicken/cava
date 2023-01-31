@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { BagState } from "../context/BagContext"
 import { Link } from "react-router-dom"
 
@@ -127,16 +127,7 @@ const Builder = () => {
     },
   }
 
-  useEffect(() => {
-    state.bag.forEach((i) => {
-      if(i.modding == true){
-        setModding(i)
-        i.ingredients.forEach((ing) => {
-          handleAdd(ing)
-        })
-      }
-    })
-  }, [state.bag])
+
 
   useEffect(() => {
     return () => {
@@ -144,10 +135,11 @@ const Builder = () => {
         type: 'DONEMOD'
       })
     }
-  }, [])
+  }, [dispatch])
 
 
-  const handleAdd = (item) => {
+
+  const handleAdd = useCallback((item) => {
     console.log(uniqueItems)
       if(item.type === 'greens' && uniqueItems.greens === 0 && green === 0){
         setUniqueItems((prevItems) => ({ ...prevItems, greens: 1}))
@@ -177,7 +169,7 @@ const Builder = () => {
         return
       }
 
-  }
+  }, [dips, grain, green, uniqueItems])
 
   const handleRemove = (item, index) => {
     if(item.type === 'greens'){
@@ -223,6 +215,17 @@ const Builder = () => {
     })
   }
 
+  useEffect(() => {
+    state.bag.forEach((i) => {
+      if(i.modding === true){
+        setModding(i)
+        i.ingredients.forEach((ing) => {
+          handleAdd(ing)
+        })
+      }
+    })
+  }, [state.bag, handleAdd])
+
   return (
     <>
     {errorModal && 
@@ -242,31 +245,31 @@ const Builder = () => {
           <div className='builder__grid'>
           <div className='builder__item' 
             onClick={() => handleAdd(sampledata.arugula)}>
-              <img src={sampledata.arugula.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.arugula.img}`} alt='ingredient'></img>
               <div>{sampledata.arugula.name}</div>
               <div>{sampledata.arugula.cal} Cal</div>
             </div>
             <div className='builder__item' 
             onClick={() => handleAdd(sampledata.supergreens)}>
-              <img src={sampledata.supergreens.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.supergreens.img}`} alt='ingredient'></img>
               <div>{sampledata.supergreens.name}</div>
               <div>{sampledata.supergreens.cal} Cal</div>
             </div>
             <div className='builder__item' 
             onClick={() => handleAdd(sampledata.babyspinach)}>
-              <img src={sampledata.babyspinach.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.babyspinach.img}`} alt='ingredient'></img>
               <div>{sampledata.babyspinach.name}</div>
               <div>{sampledata.babyspinach.cal}</div>
             </div>
             <div className='builder__item' 
             onClick={() => handleAdd(sampledata.romaine)}>
-              <img src={sampledata.romaine.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.romaine.img}`} alt='ingredient'></img>
               <div>{sampledata.romaine.name}</div>
               <div>{sampledata.babyspinach.cal}</div>
             </div>
             <div className='builder__item' 
             onClick={() => handleAdd(sampledata.splendidgreens)}>
-              <img src={sampledata.splendidgreens.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.splendidgreens.img}`} alt='ingredient'></img>
               <div>{sampledata.splendidgreens.name}</div>
               <div>{sampledata.splendidgreens.cal}</div>
             </div>       
@@ -281,25 +284,25 @@ const Builder = () => {
           <div className='builder__grid'>
             <div className='builder__item' 
             onClick={() => handleAdd(sampledata.saffronrice)}>
-              <img src={sampledata.saffronrice.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.saffronrice.img}`} alt='ingredient'></img>
               <div>{sampledata.saffronrice.name}</div>
               <div>{sampledata.saffronrice.cal} Cal</div>
             </div>
             <div className='builder__item' 
             onClick={() => handleAdd(sampledata.brownrice)}>
-              <img src={sampledata.brownrice.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.brownrice.img}`} alt='ingredient'></img>
               <div>{sampledata.brownrice.name}</div>
               <div>{sampledata.brownrice.cal} Cal</div>
             </div>
             <div className='builder__item' 
             onClick={() => handleAdd(sampledata.blacklentils)}>
-              <img src={sampledata.blacklentils.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.blacklentils.img}`} alt='ingredient'></img>
               <div>{sampledata.blacklentils.name}</div>
               <div>{sampledata.blacklentils.cal} Cal</div>
             </div>
             <div className='builder__item' 
             onClick={() => handleAdd(sampledata.rightrice)}>
-              <img src={sampledata.rightrice.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.rightrice.img}`} alt='ingredient'></img>
               <div>{sampledata.rightrice.name}</div>
               <div>{sampledata.rightrice.cal} Cal</div>
               <div>+ ${sampledata.rightrice.price} </div>
@@ -315,37 +318,37 @@ const Builder = () => {
           <div className='builder__grid'>
             <div className='builder__item' 
             onClick={() => handleAdd(sampledata.tzatziki)}>
-              <img src={sampledata.tzatziki.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.tzatziki.img}`} alt='ingredient'></img>
               <div>{sampledata.tzatziki.name}</div>
               <div>{sampledata.tzatziki.cal} Cal</div>
             </div>
             <div className='builder__item' 
             onClick={() => handleAdd(sampledata.hummus)}>
-              <img src={sampledata.hummus.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.hummus.img}`} alt='ingredient'></img>
               <div>{sampledata.hummus.name}</div>
               <div>{sampledata.hummus.cal} Cal</div>
             </div>
             <div className='builder__item' 
             onClick={() => handleAdd(sampledata.feta)}>
-              <img src={sampledata.feta.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.feta.img}`} alt='ingredient'></img>
               <div>{sampledata.feta.name}</div>
               <div>{sampledata.feta.cal} Cal</div>
             </div>
             <div className='builder__item' 
             onClick={() => handleAdd(sampledata.harissa)}>
-              <img src={sampledata.harissa.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.harissa.img}`} alt='ingredient'></img>
               <div>{sampledata.harissa.name}</div>
               <div>{sampledata.harissa.cal} Cal</div>
             </div>
             <div className='builder__item' 
             onClick={() => handleAdd(sampledata.redpepperhummus)}>
-              <img src={sampledata.redpepperhummus.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.redpepperhummus.img}`} alt='ingredient'></img>
               <div>{sampledata.redpepperhummus.name}</div>
               <div>{sampledata.redpepperhummus.cal} Cal</div>
             </div>
             <div className='builder__item' 
             onClick={() => handleAdd(sampledata.roastedeggplant)}>
-              <img src={sampledata.roastedeggplant.img}></img>
+              <img src={process.env.PUBLIC_URL + `/${sampledata.roastedeggplant.img}`} alt='ingredient'></img>
               <div>{sampledata.roastedeggplant.name}</div>
               <div>{sampledata.roastedeggplant.cal} Cal</div>
             </div>                            
@@ -368,7 +371,7 @@ const Builder = () => {
         <div className='builder__order__list'>
         {order.length > 0 && order.map((i, n) => {
             return <div className='builder__order__list__item' key={n}>
-                <img src={i.img}></img>
+                <img src={i.img} alt='ingredient'></img>
                 <p>{i.name}</p>
                 <p className='builder__order__remove' onClick={() => handleRemove(i, n)}>X</p>
               </div>

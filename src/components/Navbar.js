@@ -10,12 +10,12 @@ const Navbar = ({ setOrderModal }) => {
       <div className='navbar__content'>
         <div className='navbar__left'>
           <div className='navbar__hamburger'>
-            <img src='hamburgermenu.svg' />
+            <img src={process.env.PUBLIC_URL + '/hamburgermenu.svg'} alt='menu'/>
           </div>
           
           <Link to='/'>
             <div className='navbar__logo'>
-            <img src='cavalogo.svg' />
+            <img src={process.env.PUBLIC_URL + '/cavalogo.svg'} alt='logo'/>
             </div>
           </Link>
           <div className='navbar__links'>
@@ -30,16 +30,16 @@ const Navbar = ({ setOrderModal }) => {
       </div>
       <div className='navbar__right'>
         <div className='navbar__signin'>
-          <img src='user.svg'></img>
+          <img src='user.svg' alt='user'></img>
           <div>Sign In</div>
         </div>
         {<div className='navbar__bag' onClick={() => setOrderModal(true)}>
-          <img src='bag.svg'></img>
+          <img src={process.env.PUBLIC_URL + '/bag.svg'} alt='bag'></img>
           <div>{state.bag.length}</div>
         </div>
         }
         {
-          state.bag.length == 0 && <div className='navbar__order'>Order</div>
+          state.bag.length === 0 && <div className='navbar__order'>Order</div>
         }
       </div>
       </div>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 const ChickenRightRice = () => {
   return (
     <div className='page'>
-      <img src='rightbowl.avif'/>
+      <img src='rightbowl.avif' alt='menuitem'/>
       <div className='page__content'>
         <Link className='link' to='/'>
           <div>back to menu</div>
