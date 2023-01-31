@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/cava/static/css/main.df5eaa21.css",
+    "main.js": "/cava/static/js/main.f72af0b8.js",
+    "index.html": "/cava/index.html",
+    "main.df5eaa21.css.map": "/cava/static/css/main.df5eaa21.css.map",
+    "main.f72af0b8.js.map": "/cava/static/js/main.f72af0b8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.df5eaa21.css",
+    "static/js/main.f72af0b8.js"
+  ]
+}
