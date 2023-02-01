@@ -169,6 +169,8 @@ const Builder = () => {
         return
       }
 
+      setErrorModal(true)
+
   }, [dips, grain, green, uniqueItems])
 
   const handleRemove = (item, index) => {
@@ -231,7 +233,8 @@ const Builder = () => {
     {errorModal && 
     <div className='builder__errormodal'>
       <div className='builder__errormodalcontent'>
-        <div>Limit Exceeded</div>
+        <div>Limit reached for this ingredient</div>
+        <div>Remove current ingredient to add more</div>
         <div className='builder__okay' onClick={() => setErrorModal(false)}>Okay</div>
       </div>
     </div>}
@@ -371,7 +374,7 @@ const Builder = () => {
         <div className='builder__order__list'>
         {order.length > 0 && order.map((i, n) => {
             return <div className='builder__order__list__item' key={n}>
-                <img src={i.img} alt='ingredient'></img>
+                <img src={process.env.PUBLIC_URL + `/${i.img}`} alt='ingredient'></img>
                 <p>{i.name}</p>
                 <p className='builder__order__remove' onClick={() => handleRemove(i, n)}>X</p>
               </div>

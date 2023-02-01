@@ -30,7 +30,7 @@ const Navbar = ({ setOrderModal }) => {
       </div>
       <div className='navbar__right'>
         <div className='navbar__signin'>
-          <img src='user.svg' alt='user'></img>
+          <img src={process.env.PUBLIC_URL + '/user.svg'} alt='user'></img>
           <div>Sign In</div>
         </div>
         {<div className='navbar__bag' onClick={() => setOrderModal(true)}>
