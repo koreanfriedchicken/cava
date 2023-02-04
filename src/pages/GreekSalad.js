@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 const GreekSalad = () => {
   return (
     <div className='page'>
-      <img src='greeksalad.avif' alt='menuitem'/>
+      <img src={process.env.PUBLIC_URL + '/greeksalad.avif'} alt='menuitem'/>
       <div className='page__content'>
         <Link className='link' to='/'>
           <div>back to menu</div>

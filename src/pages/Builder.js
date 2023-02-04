@@ -195,6 +195,9 @@ const Builder = () => {
 
   //add order to bag
   const handleBag = () => {
+    if(order.length < 1){
+      return
+    }
     if(modding) {
       dispatch({
         type: 'REMOVE',
@@ -381,7 +384,7 @@ const Builder = () => {
           })}
         </div>
         <div className='builder__order__bottom'>
-          <Link onClick={handleBag} className='builder__addtobag' to='/'>
+          <Link onClick={handleBag} className={order.length > 0 ? 'builder__notempty addtobag' : 'addtobag'} to='/'>
             <div >Add to bag</div>
           </Link>
         </div>

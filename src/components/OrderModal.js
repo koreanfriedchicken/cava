@@ -78,7 +78,7 @@ const OrderModal = ({ setOrderModal }) => {
                     })}
                   </div>
                   <div className='ordermodal__list__options'>
-                    <Link to='/builder'>
+                    <Link className='ordermodal_modify' to='/builder'>
                       <div onClick={() => handleModify(i.uuid)}>Modify</div>
                     </Link>
                     <div onClick={() => handleRemove(i.uuid)}>Remove</div>

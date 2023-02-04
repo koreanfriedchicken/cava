@@ -5,8 +5,8 @@ const Footer = () => {
     <div className='footer'>
       <div className='footer__download'>
         <h2>DOWNLOAD THE CAVA APP</h2>
-        <div>iOS</div>
-        <div>Android</div>
+        <p>iOS</p>
+        <p>Android</p>
       </div>
       <div className='footer__company'>
         <h2>OUR COMPANY</h2>

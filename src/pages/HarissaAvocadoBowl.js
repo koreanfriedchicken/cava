@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 const HarissaAvocadoBowl = () => {
   return (
     <div className='page'>
-      <img src='harissabowl.avif' alt='menuitem'/>
+      <img src={process.env.PUBLIC_URL + '/harissabowl.avif'} alt='menuitem'/>
       <div className='page__content'>
         <Link className='link' to='/'>
           <div>back to menu</div>

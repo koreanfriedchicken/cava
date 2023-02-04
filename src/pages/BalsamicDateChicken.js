@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 const BalsamicDateChicken = () => {
   return (
     <div className='page'>
-      <img src='balsamicbowl.avif' alt='menuitem'/>
+      <img src={process.env.PUBLIC_URL + '/balsamicbowl.avif'} alt='menuitem'/>
       <div className='page__content'>
         <Link className='link' to='/'>
           <div>back to menu</div>
